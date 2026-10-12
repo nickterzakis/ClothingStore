@@ -5,6 +5,6 @@ import com.example.clothingstore.models.Order;
 
 public interface ClothingStoreService {
     Order createOrder(OrderRequest request);
-
-
+    Optional<Order> findById(Long id);
+    void fullyRefundOrder();
 }
