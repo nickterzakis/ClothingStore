@@ -13,11 +13,25 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class ClothingStoreController {
 
+    @Autowired
     private final ClothingStoreService service;
+
+    public ClothingStoreController(ClothingStoreService service) {
+        this.service = service;
+    }
 
     @PostMapping
     public ResponseEntity<Order> createOrder (@RequestBody OrderRequest request) {
+        Order createdOrder = service.createOrder(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdOrder);
+    }
+
+    //TODO: Full and partial refund of a given order endpoint
+    /*
+    @PostMapping
+    public ResponseEntity<Order> refundOrder() {
 
     }
+    */
 
 }
